@@ -4,21 +4,22 @@ A complete simulated interview (4-6 questions in sequence) with holistic feedbac
 
 ### Setup
 
-1. Ask for format (behavioral screen, deep behavioral, panel, bar raiser, system design/case study, technical+behavioral mix — see format taxonomy in `references/commands/prep.md`). **For system design/case study and technical+behavioral mix, run the Format Discovery Protocol before proceeding.** See format-specific simulation UX sections below.
+1. Ask for format (behavioral screen, deep behavioral, panel, bar raiser, system design/case study, technical+behavioral mix — see format taxonomy in `references/commands/prep.md`). **For system design/case study and technical+behavioral mix**: Check Interview Loops for saved format data from `prep`. If format data exists for this company+round, use it. If no format data exists, run the Format Discovery Protocol (see `references/commands/prep.md`) and save the result to Interview Loops. See format-specific simulation UX sections below.
 2. Ask for company/role context (or use existing prep data).
-3. **Calibrate difficulty and tone to the target company.** A mock for a FAANG final round should feel very different from a Series A startup first call:
+3. **Calibrate difficulty to the candidate's progression stage.** Check Drill Progression in `coaching_state.md` — if the candidate is at Stage 2 (pushback), the mock should be calibrated to push on credibility. If they're at Stage 6+ (panel/stress), they can handle maximum intensity. Don't run a maximum-difficulty mock for a candidate who hasn't cleared basic constraint drills.
+4. **Calibrate tone to the target company.** A mock for a FAANG final round should feel very different from a Series A startup first call:
    - Large tech companies: more structured, higher bar on specificity and metrics, interviewers often follow rubrics
    - Startups: more conversational, care more about adaptability and scrappiness, may go off-script
    - Consulting/finance: more case-study oriented, precision matters, presentation polish expected
    - If prep data exists for this company, use the culture read and format analysis to shape the mock's feel.
-4. Set interviewer persona based on format. For panel, deploy 2-3 distinct interviewer archetypes from `references/role-drills.md`.
+5. Set interviewer persona based on format. For panel, deploy 2-3 distinct interviewer archetypes from `references/role-drills.md`.
 
 ### Execution
 
 1. Deliver questions one at a time. Wait for each response before the next.
 2. Do NOT give feedback between questions — this simulates a real interview. Note observations silently.
 3. Vary question difficulty: start moderate, escalate, include one curveball.
-4. Include at least one question targeting a known story gap (from storybank gap analysis or `coaching_state.md`) to test gap-handling under realistic conditions.
+4. Include at least one question targeting a known story gap (from storybank gap analysis or `coaching_state.md`) to test gap-handling under realistic conditions. When the candidate encounters this gap question, evaluate their response against the Gap-Handling Module patterns in `references/cross-cutting.md`. Note which pattern they used (or didn't) in the per-question debrief.
 5. **Pull from saved concerns data.** If `concerns` was previously run for this company (check `coaching_state.md` Interview Loops or Active Coaching Strategy), include at least one question that targets the top-ranked concern. This tests whether the candidate's counter-strategy holds under mock pressure.
 6. **Adapt mid-mock like a real interviewer.** Don't just move mechanically through a question list:
    - When an answer is strong, go deeper: ask a follow-up that probes the most interesting part. Real interviewers pursue strong threads.
@@ -41,7 +42,7 @@ Switch between personas naturally within the session. Create moments where perso
 
 ### System Design / Case Study Simulation UX
 
-**Before starting, run the Format Discovery Protocol** (see format taxonomy in `references/commands/prep.md`). If the candidate has described their specific format, simulate THAT. If not, default to a verbal walkthrough format (the most coachable variant) and say so.
+**Before starting, check Interview Loops for saved format data from `prep`.** If format data exists, use it. If not, run the Format Discovery Protocol (see format taxonomy in `references/commands/prep.md`) and save the result to Interview Loops. If the candidate has described their specific format, simulate THAT. If neither data source exists, default to a verbal walkthrough format (the most coachable variant) and say so.
 
 **State the coaching boundary at setup**: "In this mock, I'll be evaluating your communication process — how you scope, structure, reason, and articulate tradeoffs. I won't be evaluating the technical correctness of your solution. For that kind of feedback, you'll want to practice with a domain peer."
 
@@ -63,6 +64,10 @@ Switch between personas naturally within the session. Create moments where perso
 - **Adaptability**: When probed or given new constraints, did they adjust with curiosity or get defensive?
 - **Time management**: Did they allocate time across the problem, or spend 80% on one component?
 - **Uncertainty handling**: When they didn't know something, did they acknowledge it and state assumptions, or bluff?
+
+### Case Study (Candidate-Driven) Note
+
+For consulting-style case studies where the candidate drives the analysis (framework selection, hypothesis-driven analysis, quantitative reasoning), the mock currently uses the System Design simulation protocol above. The communication coaching transfers — scoping, structured thinking, narrating tradeoffs — but the simulation doesn't replicate the candidate-driven structure of a consulting case (information requests, framework application, hypothesis testing). If the candidate identifies their format as a consulting-style case, note: "This mock will focus on the communication skills that transfer to case interviews — structured thinking, scoping, and articulating your reasoning. For full case practice with market sizing, framework application, and exhibit analysis, you'll want a domain-specific case prep resource alongside this communication coaching."
 
 ### Technical + Behavioral Mix Simulation UX
 
@@ -101,6 +106,10 @@ Match the mock to whatever the candidate describes. If they don't know, default 
 
 Record their responses and compare to your independent assessment in the debrief. This is the same self-calibration protocol used in `analyze` and `practice` — the delta between their read and yours is coaching gold.
 
+### Redo Mechanism
+
+After delivering per-question feedback in the debrief, offer one redo opportunity for the weakest answer: "Your answer to Q[N] had the most room for improvement. Want to try that one again right now? I'll re-ask the question and give you fresh feedback — it's the fastest way to lock in the improvement." If the candidate takes the redo, re-ask the question, score it independently, and show the before/after comparison. Only offer one redo per mock — this isn't a full practice session.
+
 ### Post-Mock Debrief Schema
 
 ```markdown
@@ -116,13 +125,16 @@ Record their responses and compare to your independent assessment in the debrief
 - Pacing: [rushed / well-timed / dragged]
 - Answer length distribution: [consistent / front-loaded / back-loaded / erratic]
 
-## Per-Question Scorecard
-### Q1
+## Per-Unit Scorecard
+Use the appropriate unit ID based on mock format: Q# for behavioral, E# for panel exchanges, P# for system design phases, CS# for case study stages. Mixed-format mocks use the relevant ID per segment.
+
+### Q1/E1/P1/CS1
 - Scores: Substance __ / Structure __ / Relevance __ / Credibility __ / Differentiation __
+- Format-specific scores (if applicable): [e.g., Process Visibility __ / Scoping Quality __]
 - Strongest moment:
 - Missed opportunity:
 
-[...repeat for each question]
+[...repeat for each unit]
 
 ## Holistic Patterns (things only visible across the full interview)
 - Repeated crutch phrases:
@@ -161,8 +173,20 @@ Record their responses and compare to your independent assessment in the debrief
 2.
 3.
 
-**Next commands**: `mock [same format]`, `practice [specific drill]`, `practice technical`, `analyze`
+**Recommended next**: `[command]` — [reason based on the debrief findings, e.g., weakest dimension drill or story improvement]. **Alternatives**: `mock [same format]`, `practice [specific drill]`, `practice technical`, `analyze`
 ```
+
+### Level 5 Additions
+
+At Directness Level 5, add the following to the mock debrief:
+
+1. **Expanded Interviewer Inner Monologue**: Include the most uncomfortable truths — moments where the interviewer wrote you off, where they considered ending the interview early, where your answer actively hurt your chances. Don't soften. "After Q3, I stopped listening for Strong Hire signals. I was now evaluating whether you were a Hire or a No Hire. That's a hard shift to come back from."
+
+2. **Holistic Challenge (after debrief)**: Run Challenge Protocol Lenses 1-2 against the full mock performance:
+   - **Assumption Audit**: What assumptions did the candidate bring into this mock that the performance contradicts? "You assumed your prioritization story was strong — the interviewer found it generic. You assumed you were answering the conflict question — you were telling a challenge story." Name every assumption the data disproves.
+   - **Blind Spot Scan**: What pattern is the candidate NOT seeing about their interview performance? What would a hiring committee discuss that the candidate wouldn't predict? "A hiring committee would notice that every story is from the same 12-month period. They'd ask: 'What has this person done in the last 2 years?'"
+
+3. **Avoidance Detection**: If the candidate chose a "safe" mock format (avoided panel when panel is a known weakness, avoided system design, chose the format they're strongest in), name it: "You chose [format] — your strongest format. Your weakest is [X] based on your practice scores. The growth is in the uncomfortable mock, not another win in the comfortable one."
 
 ### Coaching State Integration
 

@@ -43,6 +43,49 @@ Don't just file the resume — analyze it for coaching-relevant signals:
 
 Feed these findings into the Kickoff Summary output (Profile Snapshot section) and into the initial coaching plan.
 
+### Step 2.55: Career Transition Detection
+
+After resume analysis, check whether the candidate's target role represents a career transition — a meaningful change in function, domain, seniority direction, or role type from their recent trajectory.
+
+**Detection triggers** (any of these):
+- Function change: engineering → product, sales → customer success, marketing → data science
+- Domain shift: B2C → B2B, startup → enterprise, tech → non-tech (or vice versa)
+- IC ↔ management switch: moving from hands-on IC to managing, or stepping back from management to IC
+- Industry pivot: finance → healthcare, media → edtech, consulting → in-house
+- Career restart: returning after a gap (parenting, health, sabbatical, career break)
+
+**When detected**, this changes downstream coaching significantly:
+- **Stories**: The candidate needs "bridge stories" — experiences that connect the old context to the new target. Flag this for `stories`: "You're making a [type] transition. We need to build 2-3 bridge stories that show how your [old context] experience translates to [new target]. This is the most important storybank work for your search."
+- **Concerns**: The transition IS the primary concern. `concerns` should prioritize it.
+- **Positioning**: `pitch` needs to frame the transition as intentional and strategic, not reactive. "I moved from X to Y because..." needs to be compelling.
+- **Prep**: `prep` should expect interviewers to probe the transition — it will dominate at least one question.
+- **Comp**: `salary` should flag that transitions often involve comp recalibration — the candidate's current comp may not be a useful anchor for the new role.
+
+Save to coaching_state.md Profile:
+```
+- Career transition: [type — function change / domain shift / IC↔management / industry pivot / career restart]
+- Transition narrative status: [not yet developed / in progress / strong]
+```
+
+If no transition is detected, don't mention it — most candidates have realistic, linear targets.
+
+### Step 2.6: Target Reality Check
+
+After resume analysis, cross-reference the candidate's profile against their stated target role(s). This is NOT a full fit assessment — it's a quick sanity check that fires only when clear mismatches are visible from the resume alone.
+
+**Fire the check if any of these are true:**
+- Seniority gap of 2+ levels (e.g., IC targeting VP, or junior targeting Staff)
+- Zero domain experience for a domain-specific role (e.g., no healthcare experience targeting a healthcare PM role at a regulated company)
+- Function switch without an obvious bridge (e.g., marketing → engineering, with nothing on the resume connecting the two)
+- Target role requires hard skills the candidate demonstrably doesn't have (e.g., "5+ years of ML experience required" with no ML on resume)
+
+**When triggered**, surface it directly but without gatekeeping:
+"Looking at your resume against your target of [role], I want to flag something: [specific gap]. This doesn't mean you shouldn't go for it — but it means we should build a deliberate strategy for addressing this gap. Want to talk through your thinking on this target, or should we proceed and build the strongest case possible?"
+
+**When NOT triggered**, say nothing. Don't manufacture concerns. Most candidates have realistic targets.
+
+**If the candidate has multiple targets**, check each one. It's common for one target to be a strong fit and another to be a stretch — name this: "Your [Role A] target looks like a natural fit. Your [Role B] target is more of a stretch because [reason]. Both are worth pursuing, but they need different prep strategies."
+
 ### Step 3: Initialize Coaching State
 
 Write the initial `coaching_state.md` file (see SKILL.md Session State System for format) with:
@@ -50,11 +93,27 @@ Write the initial `coaching_state.md` file (see SKILL.md Session State System fo
 - Resume Analysis section populated from Step 2.5 output (positioning strengths, likely concerns, career narrative gaps, story seeds). This is critical — every downstream command (`concerns`, `prep`, `stories`, `hype`) benefits from having the resume analysis persisted. Don't lose this work.
 - Empty storybank (or populated if initial stories were provided — if initial stories are provided, write full STAR text to the Story Details section)
 - Empty score history, outcome log, drill progression at Stage 1
+- Empty Interview Intelligence section (Question Bank, Effective Patterns, Ineffective Patterns, Recruiter/Interviewer Feedback, Company Patterns, Historical Intelligence Summary — all empty, will be populated by `analyze`, `debrief`, and `feedback`)
 - Empty Active Coaching Strategy (will be populated after first `analyze` or `practice`)
 - Empty Meta-Check Log table
 - Empty Interview Loops section (will be populated by `research` or `prep`)
 - Session log with kickoff entry
 - Coaching Notes with any relevant observations from the kickoff conversation (e.g., interview anxiety, communication style preferences, emotional state about the job search)
+
+### Mid-Search Profile Update
+
+Candidates' targets often evolve mid-search — they discover they prefer a different role type, shift seniority targets based on market feedback, or pivot domains after informational interviews. When a candidate returns to `kickoff` or indicates their target has changed:
+
+1. **Don't restart from scratch.** Ask: "What's changed? Is it the target role, the seniority level, the industry, or something else?"
+2. **Show what carries over**: "Your storybank, practice scores, and coaching patterns all still apply. Here's what changes with your new target:"
+3. **Update Profile in coaching_state.md**: Target role, seniority band, career transition status (if newly triggered).
+4. **Flag downstream impacts**:
+   - If target role changed: `concerns` needs re-running (different role = different concerns). `pitch` positioning statement needs updating. `resume` may need re-targeting.
+   - If seniority changed: `prep` scoring weights shift. Practice drill calibration may need adjustment.
+   - If domain changed: New domain gap becomes a primary concern. Bridge stories needed.
+5. **Preserve history**: Don't delete old target data — move it to a "Previous targets" section. Score history, practice data, and storybank remain valid.
+
+Output a brief "Profile Update Summary" showing what changed, what carries over, and the 2-3 highest-priority actions for the new target.
 
 ### Time-Aware Coaching
 
@@ -76,6 +135,7 @@ Return exactly:
 - Seniority band:
 - Timeline:
 - Interview history: [first-time / active but not advancing / experienced but rusty]
+- Target fit assessment: [realistic / stretch — details below / flagged concerns — see below]
 - Feedback Directness:
 - Time-aware coaching mode: [triage / focused / full]
 
@@ -91,6 +151,12 @@ Based on interview history and profile:
 - Biggest risk going in: [the single most important thing to address]
 - Biggest asset going in: [the single strongest thing to build on]
 
+## Target Reality Check (only if concerns flagged)
+- Target: [role]
+- Gap identified: [specific gap]
+- Gap type: [seniority / domain / function switch / hard skill]
+- Recommendation: [proceed with gap-bridging strategy / consider alternative targets / discuss]
+
 ## First Plan
 [Adjusted to timeline and interview history — a first-timer gets a different plan than someone actively interviewing]
 
@@ -104,5 +170,5 @@ Based on interview history and profile:
 ### Before first interview (or ongoing)
 4. [specific action with command]
 
-**Next commands**: `research [company]`, `prep [company]`, `stories`, `practice ladder`, `help`
+**Recommended next**: `[command]` — [reason based on timeline and interview history]. **Alternatives**: `research [company]`, `prep [company]`, `stories`, `practice ladder`, `help`
 ```
